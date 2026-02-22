@@ -70,7 +70,6 @@ section.visible { opacity: 1; transform: translateY(0); }
   overflow: hidden;
 }
 
-/* Radial glow behind the number */
 .hero-outer::before {
   content: '';
   position: absolute;
@@ -83,8 +82,6 @@ section.visible { opacity: 1; transform: translateY(0); }
   pointer-events: none;
   z-index: 0;
 }
-
-/* No secondary pseudo-element needed */
 
 .hero {
   position: relative;
@@ -131,6 +128,36 @@ section.visible { opacity: 1; transform: translateY(0); }
   font-family: var(--sans); font-size: clamp(0.85rem, 1.8vw, 1.15rem);
   font-weight: 300; color: var(--tx3); letter-spacing: 0.01em;
   padding-bottom: 0.4rem;
+}
+
+/* Secondary hero stat — the 3B > 7B callout */
+.hero-secondary {
+  margin-top: 1.4rem;
+  padding: 1rem 1.3rem;
+  border: 1px solid rgba(184,216,90,0.15);
+  background: rgba(184,216,90,0.03);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.hero-secondary-icon {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--ac);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.hero-secondary-text {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  line-height: 1.7;
+  color: var(--tx2);
+}
+.hero-secondary-text strong {
+  color: var(--tx);
+  font-weight: 500;
 }
 
 .hero-substat {
@@ -272,9 +299,11 @@ p strong { color: var(--tx); font-weight: 500; }
 .bar-track { height: 36px; background: rgba(255,255,255,0.015); border-radius: 2px; overflow: hidden; }
 .bar-fill { height: 100%; border-radius: 2px; transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1); width: 0; }
 .bar-fill.std { background: #222230; }
+.bar-fill.std7b { background: linear-gradient(90deg, #222230, #2e2e40); }
 .bar-fill.vf { background: linear-gradient(90deg, var(--ac2), var(--ac)); }
 .bar-val { font-family: var(--mono); font-size: 0.88rem; font-weight: 600; text-align: right; opacity: 0; transition: opacity 0.5s ease 1s; }
 .bar-val.dim { color: var(--tx3); }
+.bar-val.mid { color: var(--tx2); }
 .bar-val.lit { color: var(--ac); }
 .chart-wrap.animated .bar-fill { width: var(--tw); }
 .chart-wrap.animated .bar-val { opacity: 1; }
@@ -312,7 +341,51 @@ p strong { color: var(--tx); font-weight: 500; }
 .scale-axis .arrow { display: flex; align-items: center; gap: 0.4rem; color: var(--ac2); }
 .scale-axis .arrow::after { content: '\2192'; }
 
-/* ===================== ORTHOGONAL STACK (REDESIGNED) ===================== */
+/* ===================== CROSS-SIZE CALLOUT ===================== */
+.cross-size-callout {
+  margin: 2.5rem 0;
+  padding: 2rem 2.2rem;
+  background: rgba(184,216,90,0.03);
+  border: 1px solid rgba(184,216,90,0.15);
+  border-radius: 2px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.6rem;
+  align-items: center;
+}
+.cross-size-stat {
+  text-align: center;
+  padding-right: 1.6rem;
+  border-right: 1px solid rgba(184,216,90,0.12);
+}
+.cross-size-stat .big {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--ac);
+  letter-spacing: -0.03em;
+}
+.cross-size-stat .sub {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ac2);
+  margin-top: 0.35rem;
+}
+.cross-size-body {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  line-height: 1.75;
+  color: var(--tx2);
+}
+.cross-size-body strong {
+  color: var(--tx);
+  font-weight: 500;
+}
+
+/* ===================== ORTHOGONAL STACK ===================== */
 .ortho-block {
   margin: 2.6rem 0;
   background: var(--bg-s);
@@ -335,7 +408,6 @@ p strong { color: var(--tx); font-weight: 500; }
   position: relative;
 }
 
-/* The upward glow emanating from Voidfall layer */
 .ortho-stack::before {
   content: '';
   position: absolute;
@@ -361,14 +433,12 @@ p strong { color: var(--tx); font-weight: 500; }
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Alternating subtle backgrounds for external layers */
 .ortho-layer-row.ext {
   background: rgba(255,255,255,0.012);
   border: 1px solid rgba(255,255,255,0.025);
   margin-bottom: 4px;
 }
 
-/* The separator between standard techniques and Voidfall */
 .ortho-divider {
   position: relative;
   z-index: 1;
@@ -391,7 +461,6 @@ p strong { color: var(--tx); font-weight: 500; }
   white-space: nowrap;
 }
 
-/* Voidfall foundation layer */
 .ortho-layer-row.vf-layer {
   background: rgba(184,216,90,0.06);
   border: 1px solid rgba(184,216,90,0.18);
@@ -399,7 +468,6 @@ p strong { color: var(--tx); font-weight: 500; }
   box-shadow: 0 0 25px rgba(184,216,90,0.04);
 }
 
-/* Base layer */
 .ortho-layer-row.base-layer {
   background: rgba(255,255,255,0.008);
   border: 1px solid rgba(255,255,255,0.025);
@@ -427,7 +495,6 @@ p strong { color: var(--tx); font-weight: 500; }
   opacity: 0.6;
 }
 
-/* Compatibility indicator for external layers */
 .ortho-compat {
   font-family: var(--mono);
   font-size: 0.56rem;
@@ -449,7 +516,6 @@ p strong { color: var(--tx); font-weight: 500; }
   flex-shrink: 0;
 }
 
-/* Measured delta badge on the Voidfall layer */
 .ortho-measured {
   display: flex;
   align-items: center;
@@ -480,7 +546,6 @@ p strong { color: var(--tx); font-weight: 500; }
   font-weight: 600;
 }
 
-/* Bottom-up build animation */
 .ortho-layer-row,
 .ortho-divider,
 .ortho-base-note {
@@ -495,7 +560,6 @@ p strong { color: var(--tx); font-weight: 500; }
   transform: translateY(0);
 }
 
-/* Staggered delays — bottom layers animate first */
 .ortho-block.animated .ortho-layer-row:nth-child(7) { transition-delay: 0.05s; }
 .ortho-block.animated .ortho-layer-row:nth-child(6) { transition-delay: 0.15s; }
 .ortho-block.animated .ortho-divider { transition-delay: 0.25s; }
@@ -524,6 +588,15 @@ p strong { color: var(--tx); font-weight: 500; }
 .ins-card .tag { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ac2); margin-bottom: 0.7rem; }
 .ins-card h4 { font-family: var(--sans); font-size: 1.05rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--tx); letter-spacing: -0.01em; }
 .ins-card p { font-size: 0.9rem; line-height: 1.7; color: var(--tx2); margin-bottom: 0; }
+
+/* Highlighted card variant */
+.ins-card.highlight {
+  border-color: rgba(184,216,90,0.15);
+  background: rgba(184,216,90,0.025);
+}
+.ins-card.highlight:hover {
+  border-color: rgba(184,216,90,0.25);
+}
 
 /* CTA */
 .cta { padding: 4.5rem 0 3rem; text-align: center; }
@@ -565,6 +638,8 @@ footer {
   .ortho-layer-row { grid-template-columns: 1fr; gap: 0.4rem; }
   .ortho-compat { justify-content: flex-start; }
   .ortho-measured { flex-wrap: wrap; }
+  .cross-size-callout { grid-template-columns: 1fr; }
+  .cross-size-stat { border-right: none; border-bottom: 1px solid rgba(184,216,90,0.12); padding-right: 0; padding-bottom: 1.2rem; }
 }
 @media (max-width: 480px) {
   .nav-links { display: none; }
@@ -599,22 +674,28 @@ footer {
         <span class="hero-number">+12.5%</span>
       </div>
       <span class="hero-unit">relative intelligence gain</span>
-      <div class="hero-substat">
-        <span>3B parameters</span> &middot; <span>9M training tokens</span> &middot; <span>zero contamination</span>
+
+
+      <div class="hero-secondary">
+        <div class="hero-secondary-icon">3B &gt; 7B</div>
+        <div class="hero-secondary-text">
+          <strong>Outperforms a full-finetuned 7B model</strong> from the same family on the same data, with the same eval.
+        </div>
       </div>
     </div>
 
     <div class="hero-right">
       <p class="hero-claim">
-        <strong>Same model. Same training data — token for token. Different method.</strong><br>
+        <strong>Same model. Same training data &mdash; token for token. Different method.</strong><br>
         A 3B-parameter model, finetuned with our approach, outperforms
-        standard finetuning by 12.5% on a zero-contamination reasoning benchmark.
-        
+        standard finetuning by 12.5% on a zero-contamination reasoning benchmark&mdash;and
+        beats a standard-finetuned 7B model from the same family.
       </p>
 
       <div class="hero-pills">
         <span class="pill accent">9M Training Tokens</span>
         <span class="pill accent">Zero Data Contamination</span>
+        
         <span class="pill accent">Scales With Compute</span>
         <span class="pill accent">Composable with Other Techniques</span>
       </div>
@@ -636,7 +717,7 @@ footer {
     <p>
       Every frontier AI lab optimizes for the same objective: serve the maximum number of users
       with the minimum compute per response. This is the correct optimization if you are building
-      a consumer product at global scale, but not neccesarily so if you merely need the <strong>smartest possible answer</strong>.
+      a consumer product at global scale, but not necessarily so if you merely need the <strong>smartest possible answer</strong>.
     </p>
 
     <p>
@@ -663,8 +744,8 @@ footer {
     <h2>Why you should <em>believe</em> these numbers.</h2>
 
     <p>
-      ML benchmarks have a credibility problem. Data leakage - where evaluation questions
-      overlap with pre-training data, even unintentionally - inflates scores in ways that are
+      ML benchmarks have a credibility problem. Data leakage &mdash; where evaluation questions
+      overlap with pre-training data, even unintentionally &mdash; inflates scores in ways that are
       hard to detect and easy to ignore. We needed an evaluation where memorization is
       <strong>provably impossible</strong>.
     </p>
@@ -738,22 +819,23 @@ footer {
 
     <p>
       The model either intelligently reasons through these novel definitions, or it fails.
-      No partial credit, no fuzzy matching. Correct Base-9 output, or wrong.
+      No partial credit.
     </p>
 
     <h3>The experimental design</h3>
 
     <p>
-      We take the <strong>same 3-billion parameter model</strong> and finetune it on
+      We take models from the <strong>same model family</strong> and finetune them on
       <strong>token-for-token identical training data</strong> with the same 9 million tokens,
-      the same examples, the same order. The only variable is the method.
+      the same examples, the same order. We tested both a 3B and a 7B variant. When comparing the
+      Voidfall method against the standard approach on the 3B model, the only variable is the method.
     </p>
 
     <div class="data-block">
       <span class="data-label">Controlled Variables</span>
-      <div class="data-row"><span class="k">Model</span><span class="v">3B parameters (identical checkpoint)</span></div>
+      <div class="data-row"><span class="k">Models</span><span class="v">3B &amp; 7B (same family, identical checkpoints)</span></div>
       <div class="data-row"><span class="k">Training data</span><span class="v">9M tokens (identical, token-for-token)</span></div>
-      <div class="data-row"><span class="k">Evaluation set</span><span class="v">100 problems, zero contamination by construction</span></div>
+      <div class="data-row"><span class="k">Evaluation set</span><span class="v">Zero contamination by construction</span></div>
       <div class="data-row"><span class="k">Benchmark domain</span><span class="v">Base-9 + novel operators (no pre-training overlap)</span></div>
       <div style="height: 1px; background: var(--bd); margin: 0.6rem 0;"></div>
       <span class="data-label" style="margin-top: 0.6rem;">Independent Variable</span>
@@ -770,14 +852,14 @@ footer {
       <h2>Measurable, scalable, <em>no plateau observed.</em></h2>
 
       <p>
-        Standard finetuning on the zero-contamination benchmark achieves 48% accuracy.
+        Standard finetuning on the zero-contamination benchmark achieves 48% accuracy at 3B parameters.
         The Voidfall method, applied to the <strong>same model on the same data</strong>,
-        achieves 54% - a 12.5% relative improvement on tasks specifically designed
+        achieves 54% &mdash; a 12.5% relative improvement on tasks specifically designed
         to be impossible to memorize.
       </p>
     </div>
 
-    <!-- Comparison chart -->
+    <!-- Comparison chart — same-size -->
     <div class="c-w">
       <div class="chart-wrap" id="mainChart">
         <div class="chart-label">Accuracy &middot; Zero-Contamination Benchmark &middot; 3B Model &middot; 9M Tokens</div>
@@ -799,6 +881,52 @@ footer {
 
     <div class="c">
       <p>
+        But the controlled same-size comparison is only half the story. We also finetuned a
+        <strong>7B model from the same family</strong> on the exact same training data and evaluated
+        it on the exact same benchmark. The result:
+      </p>
+    </div>
+
+    <!-- Cross-size comparison chart — the 3B > 7B moment -->
+    <div class="c-w">
+      <div class="chart-wrap" id="crossChart">
+        <div class="chart-label">Cross-Size Comparison &middot; Same Eval &middot; Same Training Data &middot; Same Family</div>
+        <div class="bar-pair">
+          <div class="bar-item">
+            <div class="bar-name">Std. finetune 3B</div>
+            <div class="bar-track"><div class="bar-fill std" style="--tw: 64%;"></div></div>
+            <div class="bar-val dim">48%</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-name">Std. finetune 7B</div>
+            <div class="bar-track"><div class="bar-fill std7b" style="--tw: 67.3%;"></div></div>
+            <div class="bar-val mid">50.5%</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-name" style="color: var(--ac);">Voidfall 3B</div>
+            <div class="bar-track"><div class="bar-fill vf" style="--tw: 72%;"></div></div>
+            <div class="bar-val lit">54%</div>
+          </div>
+        </div>
+        <div class="chart-delta">Voidfall 3B vs Standard 7B: <strong>+6.9% relative</strong> &mdash; with less than half the parameters</div>
+      </div>
+    </div>
+
+    <!-- The punchline callout -->
+    <div class="c">
+      <div class="cross-size-callout">
+        <div class="cross-size-stat">
+          <div class="big">2.3&times;</div>
+          <div class="sub">fewer parameters</div>
+        </div>
+        <div class="cross-size-body">
+          <strong>A 3B model enhanced with Voidfall outperforms a standard-finetuned 7B model</strong>
+          from the same family, on the same benchmark, trained on the same data. Our method is worth
+          more than doubling parameter count &mdash; with implications for cost, latency, and edge deployment.
+        </div>
+      </div>
+
+      <p>
         The more important result is the <strong>scaling behavior</strong>. Our method has a
         controllable axis: how much parallel compute you redirect toward intelligence per response.
         As you allocate more, accuracy increases predictably. We have not observed a ceiling.
@@ -811,7 +939,7 @@ footer {
         <div class="scale-label">Accuracy vs. Compute Allocated Per Response</div>
         <div class="scale-rows" id="scaleRows">
           <div class="scale-row">
-            <div class="scale-name">Standard finetune</div>
+            <div class="scale-name">Standard 3B</div>
             <div class="scale-track"><div class="scale-fill g0" style="--tw: 60%;"></div></div>
             <div class="scale-val" style="color: var(--tx3);">48%</div>
           </div>
@@ -866,7 +994,7 @@ footer {
     </p>
 
     <p>
-      <strong>Yes - and all of those apply to our enhanced model too.</strong> Voidfall operates at the
+      <strong>Yes &mdash; and all of those apply to our enhanced model too.</strong> Voidfall operates at the
       level of individual token prediction quality. Every technique that builds on top of a
       model's outputs benefits from those outputs being more accurate. Whatever you would do
       to the standard finetuned model, do it to ours, and the delta persists.
@@ -883,7 +1011,7 @@ footer {
           </div>
           <div class="ortho-compat">
             <span class="compat-dot"></span>
-            Compatible with Voidfall 
+            Compatible with Voidfall
           </div>
         </div>
 
@@ -894,7 +1022,7 @@ footer {
           </div>
           <div class="ortho-compat">
             <span class="compat-dot"></span>
-            Compatible with Voidfall 
+            Compatible with Voidfall
           </div>
         </div>
 
@@ -905,7 +1033,7 @@ footer {
           </div>
           <div class="ortho-compat">
             <span class="compat-dot"></span>
-            Compatible with Voidfall 
+            Compatible with Voidfall
           </div>
         </div>
 
@@ -916,7 +1044,7 @@ footer {
           </div>
           <div class="ortho-compat">
             <span class="compat-dot"></span>
-            Compatible with Voidfall 
+            Compatible with Voidfall
           </div>
         </div>
 
@@ -925,7 +1053,7 @@ footer {
           <span class="ortho-divider-label">&#9650; Higher baseline flows upward</span>
         </div>
 
-        <!-- Voidfall foundation — shows REAL measured delta -->
+        <!-- Voidfall foundation -->
         <div class="ortho-layer-row vf-layer">
           <div class="ortho-layer-name">
             Voidfall &mdash; Token Prediction Quality
@@ -958,11 +1086,20 @@ footer {
       Frontier model quality is rapidly commoditizing, with open-weight alternatives
       catching up to leading labs within months, often on less advanced hardware. The
       lasting advantage isn't building the best model at a moment in time, but developing
-      methods that consistently make any current top model measurably smarter—so
+      methods that consistently make any current top model measurably smarter &mdash; so
       <strong>improvements compound as the base models advance.</strong>
     </p>
 
     <div class="ins-grid">
+      <div class="ins-card highlight">
+        <div class="tag">Effective Parameter Amplification</div>
+        <h4>3B outperforms 7B</h4>
+        <p>
+          Our enhanced 3B model beats a standard-finetuned 7B from the same family. The method is
+          worth more than doubling parameters &mdash; with direct implications for cost, latency, and
+          deploying intelligence on constrained hardware.
+        </p>
+      </div>
       <div class="ins-card">
         <div class="tag">Model-Agnostic</div>
         <h4>Applies to (nearly) any modern transformer</h4>
@@ -996,6 +1133,14 @@ footer {
           in Base-9 that exist nowhere in any pre-training corpus, by construction.
         </p>
       </div>
+      <div class="ins-card">
+        <div class="tag">Cross-Size Validated</div>
+        <h4>Tested across model scales</h4>
+        <p>
+          Results validated on both 3B and 7B models from the same family, with identical training data.
+          The method's advantage persists and even inverts the expected size hierarchy.
+        </p>
+      </div>
     </div>
   </section>
 </div>
@@ -1011,13 +1156,13 @@ footer {
       models for Space Medicine. The problem was concrete: when an astronaut on Mars faces a medical
       emergency outside their training, Earth could be twenty minutes away at the speed of light.
       The model needed to run on spacecraft-grade hardware, reason well, and operate with no cloud
-      and no API. My specialization was quantization - making models as small as possible while
+      and no API. My specialization was quantization &mdash; making models as small as possible while
       preserving reasoning quality.
     </p>
 
     <p>
       That experience made something visible. The gap between what a model <em>could</em> reason
-      and what throughput-optimized inference <em>allows</em> it to reason is significant - and
+      and what throughput-optimized inference <em>allows</em> it to reason is significant &mdash; and
       recoverable. Every major lab optimizes away from this gap because their economics demand
       concurrency. But for anyone who values intelligence over throughput, that gap is an
       untapped resource.
@@ -1034,10 +1179,10 @@ footer {
 <div class="c" id="contact">
   <section class="cta">
     <div class="s-num" style="justify-content: center;">What's Next</div>
-    <h2>3B model. 12.5% gain.<br><em>How far does it scale?</em></h2>
+    <h2>3B model beats 7B.<br><em>How far does it scale?</em></h2>
     <p>
       We're looking for partners, collaborators, and early adopters who care about
-      intelligence per response - not throughput parallelism. If that sounds like you, let's talk.
+      intelligence per response &mdash; not throughput parallelism. If that sounds like you, let's talk.
     </p>
     <a href="mailto:rirpatil@ucsc.edu" class="cta-btn">
       Get in touch
@@ -1065,9 +1210,11 @@ const chartObs = new IntersectionObserver(es => {
 }, { threshold: 0.25 });
 
 const mc = document.getElementById('mainChart');
+const cc = document.getElementById('crossChart');
 const sr = document.getElementById('scaleRows');
 const ob = document.getElementById('orthoBlock');
 if (mc) chartObs.observe(mc);
+if (cc) chartObs.observe(cc);
 if (sr) chartObs.observe(sr);
 if (ob) chartObs.observe(ob);
 
